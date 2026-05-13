@@ -1,16 +1,42 @@
-# React + Vite
+# La Gardienne de la Vérité 🌙
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Un jeu islamique pour enfants en français** — thème : la vérité contre le mensonge.
 
-Currently, two official plugins are available:
+Conçu pour les filles de 7 ans selon la méthodologie islamique Salafi.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🎮 Fonctionnalités
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **6 écrans complets** : Titre → Personnage → Carte de niveau → Jeu → Conséquence → Victoire
+- **5 scénarios** (Maison, École, Parc, Mosquée, Magasin) avec des choix moraux
+- **Système de vies** (3 ❤️) et de **lumières** (score sur 5)
+- **Barre XP** animée en temps réel
+- **Système de combo** : 3 vérités d'affilée = "COMBO VÉRITÉ 🔥"
+- **Hadiths** dans un parchemin animé après les bonnes réponses
+- **Maison du Paradis** en pixel art CSS (se construit avec les bonnes réponses)
+- **Feux d'artifice CSS** à l'écran de victoire
+- **Web Audio API** : mélodies générées sans fichiers audio
+- **Silhouette de mosquée** SVG, ciel étoilé animé, bordure géométrique islamique
 
-## Expanding the ESLint configuration
+## 🚀 Lancer le projet
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+Ouvrir [http://localhost:5173](http://localhost:5173)
+
+## 🏗️ Build production
+
+```bash
+npm run build
+```
+
+## 🔧 Tech
+
+- React 19 + Vite
+- CSS keyframes uniquement (zéro librairie d'animation)
+- Web Audio API (zéro fichier audio)
+- Zéro dépendances externes hors React

@@ -91,7 +91,8 @@ function getOrCreateAudioCtx(ref) {
   if (!ref.current) {
     try {
       ref.current = new (window.AudioContext || window.webkitAudioContext)();
-    } catch {
+    } catch (err) {
+      console.warn('[Audio] Web Audio API not available:', err);
       return null;
     }
   }
@@ -300,9 +301,17 @@ export default function App() {
   const [comboMega, setComboMega] = useState(false);
   const [shaking, setShaking] = useState(false);
   const [locked, setLocked] = useState(false);
+  const [toast, setToast] = useState('');
 
   const audioRef = useRef(null);
   const countdownRef = useRef(null);
+  const toastRef = useRef(null);
+
+  const showToast = useCallback((msg) => {
+    setToast(msg);
+    clearTimeout(toastRef.current);
+    toastRef.current = setTimeout(() => setToast(''), 2500);
+  }, []);
 
   const ctx = useCallback(() => getOrCreateAudioCtx(audioRef), []);
 
@@ -396,8 +405,14 @@ export default function App() {
   const handleShare = useCallback(() => {
     const name = playerName || 'La Gardienne';
     const text = `${name} a collecté ${score}/5 lumières dans "La Gardienne de la Vérité" ! 🌟 Māshā'Allāh ! #IslamicGame`;
-    navigator.clipboard && navigator.clipboard.writeText(text).catch(() => {});
-  }, [playerName, score]);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text)
+        .then(() => showToast('✅ Score copié !'))
+        .catch(() => showToast('❌ Impossible de copier'));
+    } else {
+      showToast('❌ Non supporté sur ce navigateur');
+    }
+  }, [playerName, score, showToast]);
 
   // ── TITLE ──
   if (screen === 'title') return (
@@ -616,6 +631,9 @@ export default function App() {
       <div className="islamic-border" aria-hidden="true" />
       <div className="islamic-border islamic-border-bottom" aria-hidden="true" />
       <Fireworks />
+      {toast && (
+        <div className="toast-notification" role="status" aria-live="polite">{toast}</div>
+      )}
       <div className="screen victory-screen" role="main" aria-live="polite">
         <span className="victory-character" aria-hidden="true">🥳</span>
         <h1 className="victory-title">FÉLICITATIONS !<br />🌟 Māshā&apos;Allāh ! 🌟</h1>

@@ -500,3 +500,26 @@
 .firework.fw3 { animation: fw3 1.2s ease-out 0.4s infinite; }
 .firework.fw4 { animation: fw4 1.2s ease-out 0.1s infinite; }
 .firework.fw5 { animation: fw5 1.2s ease-out 0.3s infinite; }
+
+/* ===== TOAST NOTIFICATION ===== */
+@keyframes toast-in {
+  from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+.toast-notification {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(13, 31, 60, 0.95);
+  border: 2px solid var(--gold);
+  color: var(--warm-white);
+  padding: 10px 24px;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 700;
+  z-index: 200;
+  white-space: nowrap;
+  animation: toast-in 0.3s ease-out both;
+  pointer-events: none;
+}
